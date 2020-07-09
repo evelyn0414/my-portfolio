@@ -4,7 +4,7 @@
  */
 function addRandomFact() {
   const facts =
-      ['She loves icecreams🍦', 'She lives in Suzhou.', 'She loves photography.', 'She can really cook!'];
+      ['She loves icecreams🍦', 'She lives in Suzhou.', 'She loves photography.', 'She loves cooking and baking!'];
 
   // Pick a random one.
   const fact = facts[Math.floor(Math.random() * facts.length)];
@@ -13,6 +13,22 @@ function addRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
   console.log("done!");
+}
+
+// fetch message from the server
+async function getRandomFact() {
+  const response = await fetch('/random-fact');
+  const textResponse = await response.text();
+  const strings = textResponse.split('\n');
+  const fact = strings[0];
+  const image = strings[1];
+  var container = document.getElementById('fact-container');
+  var myImage = document.createElement("img");
+  myImage.src = image;
+  container.innerText = fact + "\n";
+  container.appendChild(myImage);
+  myImage.style.maxWidth = '60%';
+
 }
 
 (function($) {
