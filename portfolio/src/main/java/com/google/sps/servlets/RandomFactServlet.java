@@ -33,6 +33,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -62,14 +63,36 @@ public final class RandomFactServlet extends HttpServlet {
 
   }
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int num = (int) (Math.random() * facts.size());
-    String fact = facts.get(num);
-    String image = images.get(num);
+//   @Override
+//   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//     int num = (int) (Math.random() * facts.size());
+//     String fact = facts.get(num);
+//     String image = images.get(num);
 
-    response.setContentType("text/html;");
-    response.getWriter().println(fact);
-    response.getWriter().println(image);
+//     response.setContentType("text/html;");
+//     response.getWriter().println(fact);
+//     response.getWriter().println(image);
+//   }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int num = (int) (Math.random() * facts.size());
+        List<String> arr = new ArrayList<>();
+        arr.add(facts.get(num));
+        arr.add(images.get(num));
+        String json = convertToJson(arr);
+
+        response.setContentType("text/html;");
+        response.getWriter().println(json);
+    }
+
+  /**
+   * Converts an array into a JSON string using the Gson library. Note: We first added
+   * the Gson library dependency to pom.xml.
+   */
+  private String convertToJson(List<String> arr) {
+    Gson gson = new Gson();
+    String json = gson.toJson(arr);
+    return json;
   }
 }

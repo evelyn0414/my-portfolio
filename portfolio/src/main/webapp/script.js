@@ -15,20 +15,36 @@ function addRandomFact() {
   console.log("done!");
 }
 
-// fetch message from the server
-async function getRandomFact() {
-  const response = await fetch('/random-fact');
-  const textResponse = await response.text();
-  const strings = textResponse.split('\n');
-  const fact = strings[0];
-  const image = strings[1];
-  var container = document.getElementById('fact-container');
-  var myImage = document.createElement("img");
-  myImage.src = image;
-  container.innerText = fact + "\n";
-  container.appendChild(myImage);
-  myImage.style.maxWidth = '60%';
+// // fetch message from the server
+// async function getRandomFact() {
+//   const response = await fetch('/random-fact');
+//   const textResponse = await response.text();
+//   const strings = textResponse.split('\n');
+//   const fact = strings[0];
+//   const image = strings[1];
+//   var container = document.getElementById('fact-container');
+//   var myImage = document.createElement("img");
+//   myImage.src = image;
+//   container.innerText = fact + "\n";
+//   container.appendChild(myImage);
+//   myImage.style.maxWidth = '60%';
 
+// }
+
+// fetch message from the server in json format
+function getRandomFact() {
+  fetch('/random-fact').then(response => response.json()).then((arr) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+    const fact = arr[0];
+    const image = arr[1];
+    var container = document.getElementById('fact-container');
+    var myImage = document.createElement("img");
+    myImage.src = image;
+    container.innerText = fact + "\n";
+    container.appendChild(myImage);
+    myImage.style.maxWidth = '60%';
+  });
 }
 
 (function($) {
