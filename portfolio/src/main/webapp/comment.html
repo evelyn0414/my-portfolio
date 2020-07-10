@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="loadComments()">
     <!-- Wrapper -->
      <div id="wrapper" class="fade-in">
       
@@ -29,6 +29,59 @@
 
         <!-- Main -->
         <div id="main">
+            <!-- posts -->
+            <section class="post">
+
+                <!-- Form -->
+                    <h2>Leave A Comment</h2>
+
+                    <form method="post" action="/comment-submit">
+                        <div class="row gtr-uniform">
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="name" id="name" value="" placeholder="Name" />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="email" id="email" value="" placeholder="Email / WeChat" />
+                            </div>
+                            
+                            <!-- Break -->
+                            <div class="col-12">
+                                <textarea name="message" id="message" placeholder="Enter your message!" rows="6"></textarea>
+                            </div>
+                            <!-- Break -->
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="submit" value="Send Message" class="primary" /></li>
+                                    <li><input type="reset" value="Reset" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+            </section>
+            <section class="post">
+
+                <h3>History Comments</h3>
+                  <hr>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Comment</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comment-list">
+                                
+                            </tbody>
+                        
+                        </table>
+                    </div>
+                  </hr>
+            </section>
+
+                
+
             <!-- Featured Post -->
             <article class="post Featured">
                 <header class="major">
@@ -36,7 +89,7 @@
                 </header>
                 <hr>
                     <p>Click here to get a random fact⬇️</p>
-                    <button onclick="getRandomFact()">Fetch a fact!</button>
+                    <button onclick="getRandomFact()" class="primary">Fetch a fact!</button>
                     <div id="fact-container"></div>
                 </hr>
             </article>

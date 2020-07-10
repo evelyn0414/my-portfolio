@@ -15,6 +15,43 @@ function addRandomFact() {
   console.log("done!");
 }
 
+/** Fetches comments from the server and adds them to the DOM. */
+function loadComments() {
+  fetch('/list-comments').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
+  });
+}
+
+/** Creates an element that represents a comment, including its delete button. */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('tr');
+  
+  const nameElement = document.createElement('td');
+  nameElement.innerText = comment.name;
+
+//   const emailElement = document.createElement('td');
+//   emailElement.innerText = comment.email;
+
+  const messageElement = document.createElement('td');
+  messageElement.innerText = comment.message;
+
+  const dateElement = document.createElement('td');
+  const date = new Date(comment.timestamp);
+  dateElement.innerText = date.toDateString();
+  
+
+  commentElement.appendChild(nameElement);
+//   commentElement.appendChild(emailElement);
+  commentElement.appendChild(messageElement);
+  commentElement.appendChild(dateElement);
+  
+  return commentElement;
+}
+
+
 // // fetch message from the server
 // async function getRandomFact() {
 //   const response = await fetch('/random-fact');
