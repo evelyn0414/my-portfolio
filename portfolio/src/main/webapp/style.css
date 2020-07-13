@@ -1,7 +1,7 @@
 
 @import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
 
-/* fonts */
+/* basics */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   line-height: 1.5;
@@ -30,6 +30,14 @@ h1 {
   text-align: center;
   font-size: 4rem;
   letter-spacing: 0.075em;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 /* wrapper */
@@ -199,13 +207,46 @@ h1 {
     }
 
 
+    #main > .post header.major > .date {
+      margin-top: -2rem;
+    }
+
+    #main > .post header.major > h1, #main > .post header.major h2 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin: 0 0 2rem 0;
+    }
+
+    #main > .posts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+
+    #main > .posts > * {
+      flex-shrink: 1;
+      flex-grow: 0;
+      padding: 4rem;
+      width: 50%;
+    }
+
+    #main > .posts > article {
+      border-color: #eeeeee;
+      border-left-width: 2px;
+      border-style: solid;
+      border-top-width: 2px;
+      text-align: center;
+    }
+
 /* Image */
 
 .image {
     border: 0;
     display: inline-block;
     position: relative;
-    max-width: 40%;
 }
 
     .image img {
@@ -219,6 +260,12 @@ h1 {
         top: 0.75rem;
         max-width: 40%;
     }
+
+    .image.fit {
+			display: block;
+			margin: 2.5rem auto 0 auto;
+			width: 100%;
+		}
 
 /* Form  */
 
@@ -367,9 +414,6 @@ table tbody tr td{
 table tbody tr {
   border: solid 1px;
   border-color: #eeeeee;
-  /* line-height: 3rem; */
   
 }
-table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(220, 220, 220, 0.25);
-}
+
