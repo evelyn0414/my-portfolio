@@ -5,9 +5,10 @@
     <title>Evelyn Zhang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMbQWSa1OmGqgfo1oFVr4-ptHz4Q-fnf0"></script>
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="createMap();">
     <!-- <div id="content">
       <h1>Evelyn Zhang</h1>
       <p>This is Evelyn.<br> Welcome to my portfolio.</p>
@@ -45,6 +46,7 @@
 
         <!-- Main -->
         <div id="main">
+          <section class = post>
 
           <!-- Featured Post -->
           <article class="post Featured">
@@ -64,6 +66,13 @@
               </p>
             </hr>
           </article>
+          <br>
+
+          </section>
+          <section class = "post">
+            <h3>Cities I have been to</h3>
+            <div id="map"></div>
+          </section>
   
         </div>
      </div>

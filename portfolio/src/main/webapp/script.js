@@ -2,6 +2,17 @@
 /**
  * Adds a random fact about me to the page.
  */
+function createMap(){
+    const map = new google.maps.Map(
+        document.getElementById('map'),
+        {center: {lat: 31.30227, lng: 120.63132}, zoom: 7});
+    new google.maps.Marker(
+          {position: {lat: 31.30227, lng: 120.63132},
+           map: map,
+           title: 'Suzhou'});
+    
+}
+
 function addRandomFact() {
   const facts =
       ['She loves icecreams🍦', 'She lives in Suzhou.', 'She loves photography.', 'She loves cooking and baking!'];
