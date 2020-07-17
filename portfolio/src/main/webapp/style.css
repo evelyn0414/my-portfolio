@@ -16,7 +16,11 @@ h1, h2, h3, h4, h5, h6 {
 body{
   background-color: #212931;
   color: #212931;
+}
+
+body, input, select, textarea {
   font-family: "Merriweather", Georgia, serif;
+  font-weight: 300;
   font-size: 1rem;
   line-height: 2.375;
 }
@@ -185,7 +189,7 @@ h1 {
 }
 
   #main > * {
-    padding: 4rem 4rem 2rem 4rem ;
+    padding: 2rem 4rem 2rem 4rem ;
     border-top: solid 2px #eeeeee;
     margin: 0;
   }
@@ -215,3 +219,157 @@ h1 {
         top: 0.75rem;
         max-width: 40%;
     }
+
+/* Form  */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+.row > * {
+  box-sizing: border-box;
+}
+
+.row > .col-6 {
+  width: 50%;
+}
+
+.row > .col-12 {
+  width: 100%;
+}
+
+.row {
+  margin-top: 0;
+  margin-left: -4rem;
+}
+
+  .row > * {
+    padding: 0 0 0 4rem;
+  }
+
+  .row.gtr-uniform {
+    margin-top: -1.5rem;
+  }
+
+    .row.gtr-uniform > * {
+      padding-top: 1.5rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      appearance: none;
+      background: transparent;
+      border-radius: 0;
+      border: solid 2px;
+      border-color: #eeeeee;
+      color: inherit;
+      display: block;
+      outline: 0;
+      padding: 0 1rem;
+      text-decoration: none;
+      width: 100%;
+    }
+    input[type="text"]:focus,
+		input[type="email"]:focus,
+		textarea:focus {
+			border-color: #18bfef;
+		}
+
+/* buttons */
+  input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		border: 0;
+		border-radius: 0;
+		cursor: pointer;
+		display: inline-block;
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: 0.8rem;
+		font-weight: 900;
+		letter-spacing: 0.075em;
+		height: 3rem;
+		line-height: 3rem;
+		padding: 0 2rem;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+  }
+  
+  input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		background-color: transparent;
+		box-shadow: inset 0 0 0 2px #212931;
+		color: #212931;
+  }
+
+  input[type="submit"].primary,
+  input[type="reset"].primary,
+  input[type="button"].primary,
+  button.primary,
+  .button.primary {
+    background-color: #212931;
+    box-shadow: none;
+    color: #ffffff;
+  }
+
+/* Actions */
+
+ul.actions {
+  display: flex;
+  cursor: default;
+  list-style: none;
+  margin-left: -1rem;
+  padding-left: 0;
+}
+
+ul.actions li {
+  padding: 0 0 0 1rem;
+  vertical-align: middle;
+}
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.075em;
+  line-height: 1.5;
+  padding: 0.75rem 0.75rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+table thead {
+  border-bottom: solid 2px;
+  border-bottom-color: #eeeeee;
+}
+
+table tbody tr td{
+  padding: 0.75rem 0.75rem;
+}
+
+table tbody tr {
+  border: solid 1px;
+  border-color: #eeeeee;
+  /* line-height: 3rem; */
+  
+}
+table tbody tr:nth-child(2n + 1) {
+  background-color: rgba(220, 220, 220, 0.25);
+}

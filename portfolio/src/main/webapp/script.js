@@ -4,7 +4,7 @@
  */
 function addRandomFact() {
   const facts =
-      ['She loves icecreams🍦', 'She lives in Suzhou.', 'She loves photography.', 'She can really cook!'];
+      ['She loves icecreams🍦', 'She lives in Suzhou.', 'She loves photography.', 'She loves cooking and baking!'];
 
   // Pick a random one.
   const fact = facts[Math.floor(Math.random() * facts.length)];
@@ -13,6 +13,75 @@ function addRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
   console.log("done!");
+}
+
+/** Fetches comments from the server and adds them to the DOM. */
+function loadComments() {
+  fetch('/list-comments').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
+  });
+}
+
+/** Creates an element that represents a comment, including its delete button. */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('tr');
+  
+  const nameElement = document.createElement('td');
+  nameElement.innerText = comment.name;
+
+//   const emailElement = document.createElement('td');
+//   emailElement.innerText = comment.email;
+
+  const messageElement = document.createElement('td');
+  messageElement.innerText = comment.message;
+
+  const dateElement = document.createElement('td');
+  const date = new Date(comment.timestamp);
+  dateElement.innerText = date.toDateString();
+  
+
+  commentElement.appendChild(nameElement);
+//   commentElement.appendChild(emailElement);
+  commentElement.appendChild(messageElement);
+  commentElement.appendChild(dateElement);
+  
+  return commentElement;
+}
+
+
+// // fetch message from the server
+// async function getRandomFact() {
+//   const response = await fetch('/random-fact');
+//   const textResponse = await response.text();
+//   const strings = textResponse.split('\n');
+//   const fact = strings[0];
+//   const image = strings[1];
+//   var container = document.getElementById('fact-container');
+//   var myImage = document.createElement("img");
+//   myImage.src = image;
+//   container.innerText = fact + "\n";
+//   container.appendChild(myImage);
+//   myImage.style.maxWidth = '60%';
+
+// }
+
+// fetch message from the server in json format
+function getRandomFact() {
+  fetch('/random-fact').then(response => response.json()).then((arr) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+    const fact = arr[0];
+    const image = arr[1];
+    var container = document.getElementById('fact-container');
+    var myImage = document.createElement("img");
+    myImage.src = image;
+    container.innerText = fact + "\n";
+    container.appendChild(myImage);
+    myImage.style.maxWidth = '60%';
+  });
 }
 
 (function($) {
