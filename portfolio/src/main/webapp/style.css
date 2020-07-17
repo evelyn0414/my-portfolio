@@ -1,9 +1,217 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
+
+/* fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
-#greeting-container {
-  margin-top: 20px;
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+body{
+  background-color: #212931;
+  color: #212931;
+  font-family: "Merriweather", Georgia, serif;
+  font-size: 1rem;
+  line-height: 2.375;
 }
+
+h1 {
+  color:white;
+  text-align: center;
+  font-size: 4rem;
+  letter-spacing: 0.075em;
+}
+
+/* wrapper */
+#wrapper{
+  background-attachment: fixed;
+  background-image: url("images/bg.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  transition: ease-in-out;
+}
+@media screen and (max-width: 1080px){
+  #wrapper{
+    background-image: url("images/bg4.jpg");
+  }
+}
+
+/* intro */
+#intro{
+  text-align: center;
+  margin-top: 10rem;
+  z-index: 1;
+  height: calc(100%-4rem);
+}
+
+#intro.hidden{
+  pointer-events: none;
+  transform: translateY(2rem);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Header */
+
+#header {
+  color: #ffffff;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+  margin-top: -10rem;
+  text-align: center;
+  z-index: 2;
+}
+  #header a {
+    color: #ffffff;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+  }
+
+  #header .logo {
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+    pointer-events: auto;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 5px;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 2.25rem;
+    letter-spacing: 0.075em;
+    line-height: 1;
+    padding: 1rem 1.75rem;
+    text-transform: uppercase;
+    visibility: visible;
+  }
+
+    #header .logo:hover {
+      border-color: #18bfef;
+      color: #18bfef;
+    }
+
+    #header.hidden{
+      pointer-events: none;
+      transform: translateY(2rem);
+      transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+/* nav */
+#nav {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.175);
+  height: 4rem;
+  line-height: 4rem;
+  margin: -2rem auto 0 auto;
+  overflow: hidden;
+  width: calc(100% - 4rem);
+  max-width: 72rem;
+  z-index: 2;
+}
+
+#nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+  #nav a:hover {
+    color: #18bfef;
+  }
+
+#nav ul.links {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  letter-spacing: 0.075em;
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+  text-transform: uppercase;
+}
+
+#nav ul.links li a {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    display: block;
+    font-size: 0.8rem;
+    outline: none;
+    padding: 0 2rem;
+  }
+
+    #nav ul.links li a:hover {
+      color: inherit;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+  #nav ul.links li.active {
+    background-color: #ffffff;
+  }
+
+    #nav ul.links li.active a {
+      color: #1e252d;
+    }
+
+      #nav ul.links li.active a:hover {
+        color: #18bfef;
+      }
+
+@media screen and (max-width: 540px) {
+  #nav {
+    display: none;
+  }
+}
+
+/* Main */
+
+#main {
+  background-color: #ffffff;
+  position: relative;
+  margin: 0 auto;
+  width: calc(100% - 4rem);
+  max-width: 72rem;
+  min-height: 40rem;
+  z-index: 2;
+}
+
+  #main > * {
+    padding: 4rem 4rem 2rem 4rem ;
+    border-top: solid 2px #eeeeee;
+    margin: 0;
+  }
+
+      #main > *:first-child {
+      border-top: 0;
+    }
+
+
+/* Image */
+
+.image {
+    border: 0;
+    display: inline-block;
+    position: relative;
+    max-width: 40%;
+}
+
+    .image img {
+        display: block;
+        width:100%;
+    }
+
+    .image.left{
+        float: left;
+		margin: 0 2rem 2rem 0;
+        top: 0.75rem;
+        max-width: 40%;
+    }
