@@ -13,8 +13,8 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
   }
 #map{
-    height: 300px;
-    width:400px;
+    height: 500px;
+    width:100%;
 }
 body{
   background-color: #212931;
