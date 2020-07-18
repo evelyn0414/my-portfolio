@@ -2,6 +2,28 @@
 /**
  * Adds a random fact about me to the page.
  */
+function createMap(){
+    fetch('/location-data').then(response => response.json()).then((locations) => {
+    const map = new google.maps.Map(
+        document.getElementById('map'),
+        {center: {lat: 31.30227, lng: 120.63132}, zoom: 2});
+
+    locations.forEach((location) => {
+
+      const marker = new google.maps.Marker(
+          {position: {lat: location.lat, lng: location.lng}, 
+          map: map,
+          title: location.name});
+
+      const infoWindow = new google.maps.InfoWindow({content: location.name});
+      marker.addListener('click', () => {
+        infoWindow.open(map, marker);
+      });
+
+    });
+  });
+}
+
 function addRandomFact() {
   const facts =
       ['She loves icecreams🍦', 'She lives in Suzhou.', 'She loves photography.', 'She loves cooking and baking!'];
