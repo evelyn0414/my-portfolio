@@ -14,10 +14,54 @@
 
 package com.google.sps;
 
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.Collection;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    Collection<String> attendees = request.getAttendees();
+    long duration = request.getDuration();
+    ArrayList<TimeRange> res = new ArrayList<>();
+
+    // get all the unavailable timeRange
+    ArrayList<TimeRange> naRanges = new ArrayList<>();
+    
+    //iterate over all the events
+    for (Event event : events) {
+        boolean attendeeInvolved = false;
+        Set<String> involvedAttendees = event.getAttendees();
+        for (String attendee : attendees) {
+            if (involvedAttendees.contains(attendee)) {
+                attendeeInvolved = true;
+                break;
+            }
+        }
+        if (attendeeInvolved) {
+            naRanges.add(event.getWhen());
+        }
+    }
+
+    naRanges.sort(TimeRange.ORDER_BY_START);
+    int start_of_slot = TimeRange.START_OF_DAY;
+
+    for (TimeRange range: naRanges) {
+        if (range.end() <= start_of_slot) {
+            continue;
+        }else if (range.start() <= start_of_slot){
+            start_of_slot = range.end();
+            continue;
+        }
+        TimeRange availRange = TimeRange.fromStartEnd(start_of_slot, range.start(), false);
+        start_of_slot = range.end();
+        if (availRange .duration() >= duration) {
+            res.add(availRange);
+        }
+    }
+    if (TimeRange.END_OF_DAY - start_of_slot >= duration) {
+        res.add(TimeRange.fromStartEnd(start_of_slot, TimeRange.END_OF_DAY, true));
+    }
+
+    return res;
   }
 }
