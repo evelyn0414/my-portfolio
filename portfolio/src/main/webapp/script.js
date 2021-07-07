@@ -6,7 +6,7 @@ function createMap(){
     fetch('/location-data').then(response => response.json()).then((locations) => {
     const map = new google.maps.Map(
         document.getElementById('map'),
-        {center: {lat: 31.30227, lng: 120.63132}, zoom: 2});
+        {center: {lat: 31.30227, lng: 120.63132}, zoom: 5});
 
     locations.forEach((location) => {
 
